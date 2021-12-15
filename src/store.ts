@@ -88,8 +88,8 @@ export interface GlobalDataProps{
      }
    },
    getters:{
-     getColumnById:(state)=>{return (id:number)=>{ return state.columnData.find(item=>item.id == id)}},
-     getArticleById:(state) =>{return (id:number) =>{return state.articleData.filter(item=>item.id == id)}}
+     getColumnById(state){return (id:number)=>{ return state.columnData.find(item=>item.id == id)}},
+     getArticleById(state){return (id:number) =>{return state.articleData.filter(item=>item.id == id)}}
    }
  })
  

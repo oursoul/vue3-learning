@@ -25,6 +25,7 @@
 
        </article>
      </div>
+  
    </div>
 
 </template>
@@ -42,8 +43,13 @@ export default defineComponent({
     const store = useStore<GlobalDataProps>()
     const currentId = +route.params.id
     const column =computed(()=>store.getters.getColumnById(currentId)) 
-    const list = computed(()=>store.getters.getArticleById(currentId))
-    // const list = computed(()=>store.state.articleData.filter(item=>item.id==currentId))
+    // const list = computed(()=>store.getters.getArticleById(currentId))
+    const list = computed(()=>{
+     return store.state.articleData.filter(item=>item.columnId===currentId)
+    // return store.state.articleData
+    }
+    )
+   
     return{
       // route,
       column,
