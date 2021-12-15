@@ -1,6 +1,7 @@
 <template>
   <div>
     <column-list :list="list"/>
+    <shop></shop>
   </div>
 </template>
 
@@ -9,7 +10,7 @@ import ColumnList,{ColumnProps} from '../components/ColumnList.vue'
 import { useStore } from 'vuex';
 import {GlobalDataProps} from '../store'
 import { computed, defineComponent } from "vue";
-
+import Shop from './Shop.vue'
 export const testData:ColumnProps[] = [{
   id:1,
   title:'title1',
@@ -33,7 +34,7 @@ export default defineComponent({
     }
   },
    components:{
-    ColumnList,
+    ColumnList,Shop
   },
 })
 </script>

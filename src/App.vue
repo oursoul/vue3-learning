@@ -4,13 +4,13 @@
   <div class="container">
     <global-header :user="user"/>
     <router-view></router-view>
+    
     <div class="custom-control my-3">
       <input type="checkbox" id="check1" class="custom-control-input"/>
       <label class="custom-control-label" for="check1">
         I accept these rules.
       </label>
     </div>
-    
     <footer class="text-center py-4 text-secondary bg-light ">
       <ul class="list-inline mb-0" style="list-style:none">
         <li class="list-inline-item mx-3">@ws</li>

@@ -19,7 +19,7 @@ export default defineComponent({
     const store = useStore<GlobalDataProps>()
     const router = useRouter()
     const handleSubmit = ()=>{
-      console.log(title.value)
+      // console.log(title.value)
       const columnId = store.state.user.columnId 
       if(columnId){        
         const newPost:ArticleProps = { 

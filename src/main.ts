@@ -2,52 +2,24 @@ import { createApp } from 'vue'
 import App from './App.vue'
 // import {createStore} from 'vuex'
 import store from './store'
-import ColumnList from './views/Home.vue'
-import ColumnDetail from './views/ColumnDetail.vue'
-import createArticle from './views/createPost.vue'
-import Login from './views/Login.vue'
-import { GlobalDataProps } from './store'
-import {createRouter,createWebHistory}from 'vue-router'
+import router from './router'
+import axios from 'axios'
 
-const routerHistory = createWebHistory()
-const router = createRouter({
-  history:routerHistory,
-  routes:[{
-    path:'/',
-    name:'home',
-    component:ColumnList
-  },{
-    path:'/detail/:id',
-    name:'detail',
-    component:ColumnDetail
-  },{
-    path:'/create',
-    name:'create',
-    component:createArticle,
-    meta:{requireLogin:true}
-  },{
-    path:'/login',
-    name:'login',
-    component:Login,
-    meta:{redirectAlreadyLogin:true}
-  }]
-})
+axios.defaults.baseURL = "https://api-hmugo-web.itheima.net/"
+// axios.interceptors.request.use(config=>{
+//   config.params = {...config.params,cat_id:'9'}
+//   return config
+// })
 
-router.beforeEach((to,from,next)=>{
-  console.log(to.meta)
-  // console.log(to)
-  // console.log(from)
-  // next()
-  if(to.meta.requireLogin && !store.state.user.isLogin){
-    next({name:'login',})
-  }
-  else if(to.meta.redirectAlreadyLogin && store.state.user.isLogin){
-    next({name:'home'})
-  }
-  else{
-    next()
-  }
-})
+// axios.get('/api/public/v1/goods/search').then(res=>{
+//   console.log(res)
+// })
+
+// async function hello(){
+//   const test = await Promise.resolve('hello')
+//   return test
+// }
+// hello().then(res=>{console.log(res)})
 
 // router.afterEach()
 
