@@ -4,7 +4,8 @@
   <div class="container">
     <global-header :user="user"/>
     <router-view></router-view>
-    
+    <!-- <div v-show="isLoading">loading</div> -->
+    <loading text="loading" v-if="isLoading"></loading>
     <div class="custom-control my-3">
       <input type="checkbox" id="check1" class="custom-control-input"/>
       <label class="custom-control-label" for="check1">
@@ -28,7 +29,8 @@ import GlobalHeader ,{UserProps} from './components/GlobalHeader.vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { computed, defineComponent } from 'vue'
 import { useStore } from 'vuex'
-
+import { GlobalDataProps } from './store'
+import Loading from './views/Loading.vue'
 // export const currentUser:UserProps = {
 //   isLogin:true,
 //   name:'harry',
@@ -37,14 +39,18 @@ import { useStore } from 'vuex'
 export default defineComponent({
   name:'App',
   components:{
-    GlobalHeader
+    GlobalHeader,Loading
   },
   setup(){
-    const store = useStore()
+    const store = useStore<GlobalDataProps>()
     const user = computed(()=> store.state.user)
+    const isLoading = computed(()=>store.state.loading)
+    console.log(isLoading.value);
+    
     return{
       user:user,
-      test:'123'
+      test:'123',
+      isLoading,
     }
   }
 })

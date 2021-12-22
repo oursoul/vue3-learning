@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts">
+import Shop from './Shop.vue'
 import ColumnList,{ColumnProps} from '../components/ColumnList.vue'
 import { useStore } from 'vuex';
 import {GlobalDataProps} from '../store'
 import { computed, defineComponent } from "vue";
-import Shop from './Shop.vue'
 export const testData:ColumnProps[] = [{
   id:1,
   title:'title1',

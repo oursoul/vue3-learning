@@ -17,6 +17,7 @@ import Vue, { defineComponent ,PropType} from 'vue'
 import DropDown from './DropDown.vue'
 import { useStore } from 'vuex'
 import { GlobalDataProps } from '../store'
+import { useRouter } from 'vue-router'
 export interface UserProps{
   name?:string;
   isLogin:boolean;
@@ -34,9 +35,11 @@ export default defineComponent({
     DropDown
   },
   setup(){
+    const router = useRouter()
     const store = useStore<GlobalDataProps>()
     const handleLogin = ()=>{
-      store.commit('login')
+      // store.commit('login')
+      router.push({name:'login',path:'/login'})
     }
     return{
       handleLogin

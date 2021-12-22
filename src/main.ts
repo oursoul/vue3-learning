@@ -5,7 +5,18 @@ import store from './store'
 import router from './router'
 import axios from 'axios'
 
-axios.defaults.baseURL = "https://api-hmugo-web.itheima.net/"
+axios.defaults.baseURL = "https://api-hmugo-web.itheima.net/" 
+axios.interceptors.request.use(config=>{
+  store.commit('setLoading',true)
+  return config
+})
+
+axios.interceptors.response.use(config=>{
+  store.commit('setLoading',false)
+  return config
+})
+// axios.post('https://api-hmugo-web.itheima.net/api/public/v1/users/wxlogin',{'encryptedData':'test',rawData:'test','iv':'test','signature':'test',code:'4562510'}).then(res=>{console.log(res);
+// })
 // axios.interceptors.request.use(config=>{
 //   config.params = {...config.params,cat_id:'9'}
 //   return config

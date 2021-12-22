@@ -1,5 +1,7 @@
 import axios from 'axios'
+import { useRoute } from 'vue-router'
 import {createStore} from 'vuex'
+import router from './router'
 // import {postData} from './views/ColumnDetail.vue'
 // import {testData} from './views/home.vue'
 // import {currentUser} from './App.vue'
@@ -71,24 +73,36 @@ interface shopIndex{
   open_type?:string;
   navigator_url?:string
 }
+export interface searchData{
+  goods_id:number;
+  goods_name:string;
+}
 
 export interface GlobalDataProps{
+  token:string;
+  loading:boolean;
   articleData:ArticleProps[];
   columnData:ColumnProps[];
   user:UserProps,
-  shopData:shopIndex[]
+  shopData:shopIndex[],
+  searchData:searchData[]
 }
 
  const store = createStore<GlobalDataProps>({
    state:{
+     token:'',
+     loading:false,
      articleData:articleData,
      columnData:columnData,
      user:user,
-     shopData:[]
+     shopData:[],
+     searchData:[]
    },
    mutations:{
-     login(state){
+     login(state,val){
+       console.log(val);
        state.user = {...state.user,isLogin:true,name:'harry tao',columnId:2}
+       router.push('/')
      },
      createArticle(state,val){
       //  console.log(val)
@@ -98,6 +112,13 @@ export interface GlobalDataProps{
      fetchHomeData(state,res){
        console.log(res.message);
        state.shopData = res.message
+     },
+     fetchSearchData(state,res){
+       state.searchData = res.message
+       console.log(state.searchData)
+     },
+     setLoading(state,status){
+       state.loading = status
      }
    },
    actions:{
@@ -109,9 +130,18 @@ export interface GlobalDataProps{
       //  })
      },
      async fetchProduct(ctx,good_name){
+      //  ctx.commit('setLoading',true)
       //  console.log(good_name)
        const {data} = await axios.get(`/api/public/v1/goods/qsearch?query=${good_name}`)
+      //  await new Promise(resolve => setTimeout(resolve,3000))
       //  console.log(data)
+       ctx.commit("fetchSearchData",data)
+      //  ctx.commit('setLoading',false)
+     },
+     async handleLogin({commit},data){
+       console.log(data);
+       const val = await axios.post('/api/public/v1/users/wxlogin',data)
+       commit('login',val)
      }
    }
    ,
