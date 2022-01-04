@@ -7,10 +7,12 @@
       </li> -->
        
       <drop-down-item :disabled="true"> 
-        <a href="#" style="text-decoration: none;">编辑资料</a>
+        <template #slot1><a href="#" style="text-decoration: none;">编辑资料</a></template>
+        <template #slot2><a href="#" style="text-decoration: none;">测试具名插槽</a></template>
       </drop-down-item>
       <drop-down-item> 
         <router-link :to='{name:"create"}' style="text-decoration: none;">新建文章</router-link>
+        <template v-slot:slot1="user">{{user.data}}</template>
       </drop-down-item>
        <drop-down-item> 
         <a href="#" style="text-decoration: none;">退出</a>

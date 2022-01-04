@@ -1,6 +1,9 @@
 <template>
   <li class="dropdown-item" :class="{'is-disabled':disabled}">
-   <slot></slot>
+   <slot name="slot1" :data="testData"></slot>
+   <hr>
+   <slot name="slot2"></slot>
+   <slot ></slot>
   </li>
 </template>
 
@@ -11,6 +14,11 @@ export default defineComponent({
     disabled:{
       type:Boolean,
       default:false
+    }
+  },
+  setup(){
+    return{
+      testData:'test scope slot'
     }
   }
 })

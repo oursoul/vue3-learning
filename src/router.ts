@@ -4,6 +4,7 @@ import createArticle from './views/createPost.vue'
 import {createRouter,createWebHistory}from 'vue-router'
 import store from './store'
 import Login from './views/Login.vue'
+import Daily from './dailylearn/tab/App.vue'
 import { GlobalDataProps } from './store'
 
 const routerHistory = createWebHistory()
@@ -27,6 +28,10 @@ const router = createRouter({
     name:'login',
     component:Login,
     meta:{redirectAlreadyLogin:true}
+  },{
+    path:'/daily',
+    name:'daily',
+    component:Daily
   }]
 })
 

@@ -94,3 +94,101 @@ let person1:Aperson = {name:'harry',age:17}
 // 使用第三方库的情况,有第三方的声明文件 @types/jquery
 declare var jQuery:(selector:string)=>any
 jQuery('.need')
+
+// function testDeclare(){
+
+// }
+// 这种错误并不是类型错误，而是找不到成员变量的错误
+declare var testDeclare:()=>void
+const a = window.testDeclare()
+
+// 定义类型太宽泛会报错
+// var b:Array = []
+
+// 
+interface User{
+  name:string;
+  age:number;
+  // 定义函数
+  say(name:string):void;
+}
+const user = {
+  name:'test',
+  age:13,
+  say(name:string){
+    console.log(name)
+  }
+}
+// 默认参数
+type A<T = string> = Array<T>;
+// const aa: A = [1]; // type 'number' is not assignable to type 'string'.
+const bb: A = ["1"]; // ok
+const cc: A<number> = [1]; // ok
+
+// 1.一些混淆写法
+// 1.1箭头函数
+let mySum:(x:number,y:number)=>number = function(x:number,y:number):number{
+  return x+y
+}
+// 1.2接口内的小括号,指的是函数声名
+interface Person{
+  (age:number,name:string):boolean;
+}
+let person:Person = (age:number,name:string)=>{
+  return true
+}
+// 2泛型
+// 2.1使用interface和type定义自己的类型；使用& |逻辑运算符对类型
+// 进行操作，从而生成新的类型；提供泛型定义的时候不指定类型，
+// 在调用的时候指定具体的参数
+
+// 理解：对值进行编程，泛型对类型进行编程
+
+// 2.2泛型第一个例子id函数
+// 
+type isString = (args:string)=>string
+type isNumber = (args:number)=>number
+// 这种联合类型只能使用在interface上
+// type together = isNumber | isString
+// const id:together = (args)=>args
+// id('sg')
+const id:isNumber = (args)=>args
+id(111)
+function id1<T>(args:T):T{
+  return args
+}
+id1<string>('sss')
+
+// 2.3泛型约束,如果直接将参数限定为Sizeable类型，会有类型丢失的风险
+interface Sizeable{
+  size:number
+}
+function trace<T extends Sizeable>(args:T):T{
+  console.log(args.size);
+  return args
+}
+
+// 3常见的泛型
+// 3.1集合类
+const a1:Array<string> = ['11','22']
+// 3.2React.FC起别名
+// type FC<P = {}> = FunctionComponent<P>
+
+// 4类型推导和默认参数
+// 4.1类型推导仅仅是在初始化的时候进行推导
+let a2 = 'test'
+a2.includes('i')
+// a2 = 1,报错
+id1('aaa')//泛型页支持类型推导
+
+// 5默认参数
+type B<T=string> = Array<T>
+
+const b1:B = ['123']
+const b2:B<Number> = [123]
+
+
+
+
+
+

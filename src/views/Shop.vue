@@ -24,6 +24,9 @@
     {{data.count}}-{{data.increate()}}-{{data.double}}<br>
     {{count}} -- {{increate()}} - {{double}}
   </div>
+  <!-- 失去焦点 @change事件 -->
+  <input type="text" v-model.lazy="val">
+  {{val}}
 
   </div>
 </template>
@@ -68,9 +71,11 @@ export default defineComponent({
     })
     const data1 = toRefs(data)
     // 模块化
+
+    const val = ref()
     
     return{
-      list,product_name,handleSearch,banner,title,data,...data1
+      list,product_name,handleSearch,banner,title,data,...data1,val
     }
   },
 })

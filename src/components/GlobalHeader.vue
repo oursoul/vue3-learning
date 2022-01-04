@@ -2,8 +2,10 @@
   <nav class="d-flex justify-content-between px-4 bg-primary mb-5">
     <a href="#" class="navbar-brand"><img src="https://images.wondershare.com/democreator/images2021/education-students/nav-icon1.svg" alt=""></a>
     <div v-if="!user.isLogin">
+      <router-link class="btn btn-outline-light my-2 mx-4" to="/daily" >go to learn</router-link>
       <a href="#" class="btn btn-outline-light my-2 mx-4" @click="handleLogin">login</a>
       <a href="#" class="btn btn-outline-light my-2">register</a>
+      
     </div>
     <div v-else>
       <!-- <a href="#" class="btn btn-outline-light my-2 ">user</a> -->
