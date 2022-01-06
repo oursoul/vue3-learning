@@ -1,10 +1,19 @@
 import ColumnList from './views/Home.vue'
 import ColumnDetail from './views/ColumnDetail.vue'
 import createArticle from './views/createPost.vue'
-import {createRouter,createWebHistory}from 'vue-router'
+import {createRouter,createWebHistory} from 'vue-router'
 import store from './store'
 import Login from './views/Login.vue'
-import Daily from './dailylearn/tab/App.vue'
+import Daily from './dailylearn/App.vue'
+import Tab from './dailylearn/tab/App.vue'
+import Slot from './dailylearn/slot/App.vue'
+import Async from './dailylearn/async/App.vue'
+import VmodalCom from './dailylearn/v-modal-com/App.vue'
+import Transition from './dailylearn/transition/App.vue'
+import Composition from './dailylearn/compositionapi/App.vue'
+
+
+
 import { GlobalDataProps } from './store'
 
 const routerHistory = createWebHistory()
@@ -31,7 +40,32 @@ const router = createRouter({
   },{
     path:'/daily',
     name:'daily',
-    component:Daily
+    component:Daily,
+    children:[{
+      path:'tab',//子路由不需要/
+      name:'tab',
+      component:Tab
+    },{
+      path:'slot',//子路由不需要/
+      name:'slot',
+      component:Slot
+    },{
+      path:'async',//子路由不需要/
+      name:'async',
+      component:Async
+    },{
+      path:'modal',//子路由不需要/
+      name:'vmodalcom',
+      component:VmodalCom
+    },{
+      path:'transition',//子路由不需要/
+      name:'transition',
+      component:Transition
+    },{
+      path:'composition',//子路由不需要/
+      name:'composition',
+      component:Composition
+    }]
   }]
 })
 

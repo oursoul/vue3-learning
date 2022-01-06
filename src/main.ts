@@ -5,6 +5,10 @@ import store from './store'
 import router from './router'
 import axios from 'axios'
 
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
+import 'animate.css'
 axios.defaults.baseURL = "https://api-hmugo-web.itheima.net/" 
 axios.interceptors.request.use(config=>{
   store.commit('setLoading',true)
@@ -51,4 +55,5 @@ axios.interceptors.response.use(config=>{
 const app = createApp(App)
 app.use(store)
 app.use(router)
+app.use(ElementPlus)
 app.mount('#app')
