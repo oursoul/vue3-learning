@@ -20,9 +20,10 @@
 
   <hr>
   <div>
-   <h2 ref="title">Part3 <span class="lead">learn reactive、ref、toRefs</span></h2> 
+   <h2 ref="title">Part3 <span class="lead">learn reactive、ref、toRefs、toRef</span></h2> 
     {{data.count}}-{{data.increate()}}-{{data.double}}<br>
-    {{count}} -- {{increate()}} - {{double}}
+    {{count}} -- {{increate()}} - {{double}} -- {{data2}}
+    <el-button type="primary" @click="data2++">add</el-button>
   </div>
   <!-- 失去焦点 @change事件 -->
   <input type="text" v-model.lazy="val">
@@ -32,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onUnmounted, onUpdated, reactive, ref,toRefs } from 'vue'
+import { computed, defineComponent, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onUnmounted, onUpdated, reactive, ref,toRef,toRefs } from 'vue'
 import {useStore} from 'vuex'
 import {GlobalDataProps} from '../store'
 import {searchData} from '../store'
@@ -70,12 +71,13 @@ export default defineComponent({
       double:computed(()=>data.count*2)
     })
     const data1 = toRefs(data)
+    const data2 = toRef(data,"count")
     // 模块化
 
     const val = ref()
     
     return{
-      list,product_name,handleSearch,banner,title,data,...data1,val
+      list,product_name,handleSearch,banner,title,data,...data1,val,data2
     }
   },
 })

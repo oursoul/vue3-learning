@@ -11,6 +11,7 @@ import Async from './dailylearn/async/App.vue'
 import VmodalCom from './dailylearn/v-modal-com/App.vue'
 import Transition from './dailylearn/transition/App.vue'
 import Composition from './dailylearn/compositionapi/App.vue'
+import Directive from './dailylearn/directives/App.vue'
 
 
 
@@ -65,6 +66,10 @@ const router = createRouter({
       path:'composition',//子路由不需要/
       name:'composition',
       component:Composition
+    },{
+      path:'directive',//子路由不需要/
+      name:'directive',
+      component:Directive
     }]
   }]
 })

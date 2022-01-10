@@ -56,4 +56,11 @@ const app = createApp(App)
 app.use(store)
 app.use(router)
 app.use(ElementPlus)
+app.directive("focus",{
+  mounted(el,bindings,vnode,preVnode){
+    el.focus()
+    console.log(bindings);
+    
+  }
+})
 app.mount('#app')

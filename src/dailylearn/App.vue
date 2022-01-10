@@ -5,6 +5,7 @@
   <router-link to="/daily/modal"  class="btn btn-success px-4 mx-4">modal-component</router-link>
   <router-link to="/daily/transition"  class="btn btn-success px-4 mx-4">transition</router-link>
   <router-link to="/daily/composition"  class="btn btn-success px-4 mx-4">composition api</router-link>
+  <router-link to="/daily/directive"  class="btn btn-success px-4 mx-4">directive</router-link>
   
   <router-view></router-view>
 </template>
