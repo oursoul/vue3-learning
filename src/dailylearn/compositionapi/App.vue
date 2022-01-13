@@ -44,6 +44,8 @@
     <el-button type="info" @click="changeInfo">changeInfo(see log)</el-button>
     
     <h3>监听多个数据源（见log)</h3>
+
+
   </div>
 </template>
 
@@ -59,6 +61,7 @@ import {
   triggerRef,
   watch,
   watchEffect,
+  getCurrentInstance
 } from "vue";
 import debounceRef from "./hook/useDebounceRef";
 export default defineComponent({
@@ -173,6 +176,11 @@ export default defineComponent({
       // 第一次自执行
       immediate:true
     })
+    
+
+    // 8.0使用自定义插件
+    const instance = getCurrentInstance()
+    console.log('使用自定义插件',instance?.appContext.config.globalProperties.$testName)
 
     return {
       val,

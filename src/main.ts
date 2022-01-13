@@ -9,6 +9,11 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
 import 'animate.css'
+import registerDirecter from './dailylearn/directives/directive/index'
+
+import PluginTest from './dailylearn/plugin/plugin1.js'
+import PluginTest2 from './dailylearn/plugin/plugin2.js'
+
 axios.defaults.baseURL = "https://api-hmugo-web.itheima.net/" 
 axios.interceptors.request.use(config=>{
   store.commit('setLoading',true)
@@ -53,9 +58,13 @@ axios.interceptors.response.use(config=>{
 // console.log(store.state)
 
 const app = createApp(App)
+registerDirecter(app)
 app.use(store)
 app.use(router)
 app.use(ElementPlus)
+app.use(PluginTest)
+app.use(PluginTest2)
+
 app.directive("focus",{
   mounted(el,bindings,vnode,preVnode){
     el.focus()
@@ -63,4 +72,5 @@ app.directive("focus",{
     
   }
 })
+
 app.mount('#app')
